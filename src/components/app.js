@@ -2,14 +2,21 @@ import React, { useState } from "react";
 
 const App = () => {
   const [user, setUser] = useState("");
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    fetch(`https://api.github.com/users/${user}`)
+    await fetch(`https://api.github.com/users/${user}`)
       .then(res => {
         return res.json();
       })
       .then(data => {
         console.log(data.repos_url);
+        fetch(data.repos_url)
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            console.log(data);
+          });
       });
   };
 
