@@ -4,7 +4,9 @@
   "description": "git push checker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cleanup": "rm -rf .cache dist",
+    "dev": "npm run cleanup && parcel ./src/index.html"
   },
   "repository": {
     "type": "git",
