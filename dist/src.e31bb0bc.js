@@ -31768,6 +31768,7 @@ var App = function App() {
     var _ref = _asyncToGenerator(
     /*#__PURE__*/
     regeneratorRuntime.mark(function _callee(e) {
+      var data, repoList;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -31776,16 +31777,19 @@ var App = function App() {
               _context.next = 3;
               return fetch("https://api.github.com/users/".concat(user)).then(function (res) {
                 return res.json();
-              }).then(function (data) {
-                console.log(data.repos_url);
-                fetch(data.repos_url).then(function (res) {
-                  return res.json();
-                }).then(function (data) {
-                  console.log(data);
-                });
               });
 
             case 3:
+              data = _context.sent;
+              _context.next = 6;
+              return fetch(data.repos_url).then(function (res) {
+                return res.json();
+              });
+
+            case 6:
+              repoList = _context.sent;
+
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -32587,7 +32591,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59011" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50480" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
