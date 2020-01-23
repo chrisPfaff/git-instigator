@@ -1,11 +1,35 @@
-import React, { Component } from "react";
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Git Instigator</h1>
-      </div>
-    );
-  }
-}
+import React, { useState } from "react";
+
+const App = () => {
+  const [user, setUser] = useState("");
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetch(`https://api.github.com/users/${user}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log(data.repos_url);
+      });
+  };
+
+  const handleChange = e => {
+    setUser(e.target.value);
+    console.log(user);
+  };
+
+  return (
+    <div>
+      <h1>Git Instigator</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={user} onChange={handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  );
+};
+
 export default App;
