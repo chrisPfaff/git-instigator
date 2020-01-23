@@ -1,0 +1,23 @@
+{
+  "name": "git-instigator",
+  "version": "1.0.0",
+  "description": "git push checker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisPfaff/git-instigator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisPfaff/git-instigator/issues"
+  },
+  "homepage": "https://github.com/chrisPfaff/git-instigator#readme",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
