@@ -4,20 +4,14 @@ const App = () => {
   const [user, setUser] = useState("");
   const handleSubmit = async e => {
     e.preventDefault();
-    await fetch(`https://api.github.com/users/${user}`)
-      .then(res => {
+    const data = await fetch(`https://api.github.com/users/${user}`).then(
+      res => {
         return res.json();
-      })
-      .then(data => {
-        console.log(data.repos_url);
-        fetch(data.repos_url)
-          .then(res => {
-            return res.json();
-          })
-          .then(data => {
-            console.log(data);
-          });
-      });
+      }
+    );
+    const repoList = await fetch(data.repos_url).then(res => {
+      return res.json();
+    });
   };
 
   const handleChange = e => {
