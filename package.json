@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/chrisPfaff/git-instigator#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "parcel-bundler": "^1.12.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
