@@ -1,13 +1,10 @@
 import "regenerator-runtime/runtime";
 
 const getTimesFromRepos = async repos => {
-  const [repoTime, setRepoTime] = [];
-
-  let x = repos.map(item => {
-    console.log(item);
-    return [item.updated_at, item.name, item.html_url];
+  let repoList = repos.map(item => {
+    return [item.updated_at.slice(0, 10), item.name, item.html_url];
   });
-  console.log("repos mapped", x);
+  console.log(repoList);
 };
 
 export default getTimesFromRepos;

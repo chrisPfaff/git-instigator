@@ -32534,20 +32534,17 @@ function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee(repos) {
-    var _ref2, repoTime, setRepoTime, x;
-
+    var repoList;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _ref2 = [], repoTime = _ref2[0], setRepoTime = _ref2[1];
-            x = repos.map(function (item) {
-              console.log(item);
-              return [item.updated_at, item.name, item.html_url];
+            repoList = repos.map(function (item) {
+              return [item.updated_at.slice(0, 10), item.name, item.html_url];
             });
-            console.log("repos mapped", x);
+            console.log(repoList);
 
-          case 3:
+          case 2:
           case "end":
             return _context.stop();
         }
@@ -32713,7 +32710,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57079" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61070" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
