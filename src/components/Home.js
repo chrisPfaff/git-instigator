@@ -4,7 +4,7 @@ import getTimesFromRepos from "../utils/getTimesFromRepos.js";
 
 const Home = () => {
   const [user, setUser] = useState("");
-  // const [repos, setRepos] = useState([]);
+  const [repos, setRepos] = useState([]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -12,7 +12,6 @@ const Home = () => {
       getTimesFromRepos(data);
     });
   };
-
   const handleChange = e => {
     setUser(e.target.value);
   };

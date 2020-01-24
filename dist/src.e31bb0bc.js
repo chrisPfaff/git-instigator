@@ -32534,17 +32534,18 @@ function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee(repos) {
-    var _ref2, repoTime, setRepoTime;
+    var _ref2, repoTime, setRepoTime, x;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _ref2 = [], repoTime = _ref2[0], setRepoTime = _ref2[1];
-            console.log("reposs", repos);
-            repos.forEach(function (item) {
+            x = repos.map(function (item) {
               console.log(item);
+              return [item.updated_at, item.name, item.html_url];
             });
+            console.log("repos mapped", x);
 
           case 3:
           case "end":
@@ -32597,8 +32598,12 @@ var Home = function Home() {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
       user = _useState2[0],
-      setUser = _useState2[1]; // const [repos, setRepos] = useState([]);
+      setUser = _useState2[1];
 
+  var _useState3 = (0, _react.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      repos = _useState4[0],
+      setRepos = _useState4[1];
 
   var handleSubmit =
   /*#__PURE__*/
@@ -32708,7 +32713,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56085" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57079" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
