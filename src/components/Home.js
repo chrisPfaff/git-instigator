@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import getReposFromUser from "../utils/getReposFromUser.js";
 import getTimesFromRepos from "../utils/getTimesFromRepos.js";
+import checkRepoDate from "../utils/checkRepoDate.js";
 
 const Home = () => {
   const [user, setUser] = useState("");
@@ -9,7 +10,8 @@ const Home = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     getReposFromUser(user).then(data => {
-      getTimesFromRepos(data);
+      const repos = getTimesFromRepos(data);
+      checkRepoDate(repos);
     });
   };
   const handleChange = e => {

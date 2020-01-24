@@ -32559,6 +32559,22 @@ function () {
 
 var _default = getTimesFromRepos;
 exports.default = _default;
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"utils/checkRepoDate.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+require("regenerator-runtime/runtime");
+
+var checkRepoDate = function checkRepoDate(repos) {
+  console.log(repos);
+};
+
+var _default = checkRepoDate;
+exports.default = _default;
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"components/Home.js":[function(require,module,exports) {
 "use strict";
 
@@ -32572,6 +32588,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _getReposFromUser = _interopRequireDefault(require("../utils/getReposFromUser.js"));
 
 var _getTimesFromRepos = _interopRequireDefault(require("../utils/getTimesFromRepos.js"));
+
+var _checkRepoDate = _interopRequireDefault(require("../utils/checkRepoDate.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32614,7 +32632,8 @@ var Home = function Home() {
             case 0:
               e.preventDefault();
               (0, _getReposFromUser.default)(user).then(function (data) {
-                (0, _getTimesFromRepos.default)(data);
+                var repos = (0, _getTimesFromRepos.default)(data);
+                (0, _checkRepoDate.default)(repos);
               });
 
             case 2:
@@ -32648,7 +32667,7 @@ var Home = function Home() {
 
 var _default = Home;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../utils/getReposFromUser.js":"utils/getReposFromUser.js","../utils/getTimesFromRepos.js":"utils/getTimesFromRepos.js"}],"components/app.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../utils/getReposFromUser.js":"utils/getReposFromUser.js","../utils/getTimesFromRepos.js":"utils/getTimesFromRepos.js","../utils/checkRepoDate.js":"utils/checkRepoDate.js"}],"components/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32710,7 +32729,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61070" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63756" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
