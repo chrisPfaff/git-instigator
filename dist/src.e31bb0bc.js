@@ -32570,7 +32570,8 @@ exports.default = void 0;
 require("regenerator-runtime/runtime");
 
 var checkRepoDate = function checkRepoDate(repos) {
-  console.log(repos);
+  var time = new Date();
+  console.log(String(time).slice(4, 15) === "Jan 24 2020");
 };
 
 var _default = checkRepoDate;
@@ -32729,7 +32730,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63756" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51272" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
