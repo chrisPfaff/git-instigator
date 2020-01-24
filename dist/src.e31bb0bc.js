@@ -32497,10 +32497,9 @@ function () {
 
           case 5:
             repoList = _context.sent;
-            console.log(repoList);
             return _context.abrupt("return", repoList);
 
-          case 8:
+          case 7:
           case "end":
             return _context.stop();
         }
@@ -32535,13 +32534,19 @@ function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee(repos) {
+    var _ref2, repoTime, setRepoTime;
+
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(repos);
+            _ref2 = [], repoTime = _ref2[0], setRepoTime = _ref2[1];
+            console.log("reposs", repos);
+            repos.forEach(function (item) {
+              console.log(item);
+            });
 
-          case 1:
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -32592,12 +32597,8 @@ var Home = function Home() {
   var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
       user = _useState2[0],
-      setUser = _useState2[1];
+      setUser = _useState2[1]; // const [repos, setRepos] = useState([]);
 
-  var _useState3 = (0, _react.useState)([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      repos = _useState4[0],
-      setRepos = _useState4[1];
 
   var handleSubmit =
   /*#__PURE__*/
@@ -32611,11 +32612,10 @@ var Home = function Home() {
             case 0:
               e.preventDefault();
               (0, _getReposFromUser.default)(user).then(function (data) {
-                setRepos(data);
+                (0, _getTimesFromRepos.default)(data);
               });
-              (0, _getTimesFromRepos.default)(repos);
 
-            case 3:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -32708,7 +32708,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63697" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56085" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

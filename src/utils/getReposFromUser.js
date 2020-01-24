@@ -7,7 +7,6 @@ const getReposFromUser = async user => {
   const repoList = await fetch(`${data.repos_url}?per_page=150`).then(res => {
     return res.json();
   });
-  console.log(repoList);
   return repoList;
 };
 
