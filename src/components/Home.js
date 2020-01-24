@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import getReposFromUser from "../utils/getReposFromUser.js";
+import getTimesFromRepos from "../utils/getTimesFromRepos.js";
 
 const Home = () => {
   const [user, setUser] = useState("");
@@ -9,8 +10,8 @@ const Home = () => {
     e.preventDefault();
     getReposFromUser(user).then(data => {
       setRepos(data);
-      console.log(repos);
     });
+    getTimesFromRepos(repos);
   };
 
   const handleChange = e => {

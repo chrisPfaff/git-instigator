@@ -32515,6 +32515,47 @@ function () {
 
 var _default = getReposFromUser;
 exports.default = _default;
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"utils/getTimesFromRepos.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+require("regenerator-runtime/runtime");
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var getTimesFromRepos =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee(repos) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log(repos);
+
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function getTimesFromRepos(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var _default = getTimesFromRepos;
+exports.default = _default;
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"components/Home.js":[function(require,module,exports) {
 "use strict";
 
@@ -32526,6 +32567,8 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _getReposFromUser = _interopRequireDefault(require("../utils/getReposFromUser.js"));
+
+var _getTimesFromRepos = _interopRequireDefault(require("../utils/getTimesFromRepos.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32569,10 +32612,10 @@ var Home = function Home() {
               e.preventDefault();
               (0, _getReposFromUser.default)(user).then(function (data) {
                 setRepos(data);
-                console.log(repos);
               });
+              (0, _getTimesFromRepos.default)(repos);
 
-            case 2:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -32603,7 +32646,7 @@ var Home = function Home() {
 
 var _default = Home;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../utils/getReposFromUser.js":"utils/getReposFromUser.js"}],"components/app.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../utils/getReposFromUser.js":"utils/getReposFromUser.js","../utils/getTimesFromRepos.js":"utils/getTimesFromRepos.js"}],"components/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32665,7 +32708,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55139" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63697" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
