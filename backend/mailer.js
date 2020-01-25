@@ -12,7 +12,7 @@ let mailOptions = {
   from: "gitinstigator@yahoo.com",
   to: "*",
   subject: "Sending Email using Node.js",
-  text: "That was easy!"
+  text: "HI BABE"
 };
 
 module.exports = {
