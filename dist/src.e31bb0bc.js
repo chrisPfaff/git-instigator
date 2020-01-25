@@ -32576,7 +32576,79 @@ var checkRepoDate = function checkRepoDate(repos) {
 
 var _default = checkRepoDate;
 exports.default = _default;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"components/Home.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles/Home.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32591,6 +32663,8 @@ var _getReposFromUser = _interopRequireDefault(require("../utils/getReposFromUse
 var _getTimesFromRepos = _interopRequireDefault(require("../utils/getTimesFromRepos.js"));
 
 var _checkRepoDate = _interopRequireDefault(require("../utils/checkRepoDate.js"));
+
+require("../styles/Home.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32616,10 +32690,15 @@ var Home = function Home() {
       user = _useState2[0],
       setUser = _useState2[1];
 
-  var _useState3 = (0, _react.useState)([]),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      repos = _useState4[0],
-      setRepos = _useState4[1];
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = (0, _react.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      repos = _useState6[0],
+      setRepos = _useState6[1];
 
   var handleSubmit =
   /*#__PURE__*/
@@ -32654,21 +32733,42 @@ var Home = function Home() {
     setUser(e.target.value);
   };
 
-  return _react.default.createElement("div", null, _react.default.createElement("h1", null, "Git Instigator"), _react.default.createElement("form", {
+  var handleChangeEmail = function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  };
+
+  return _react.default.createElement("div", {
+    className: "Home"
+  }, _react.default.createElement("h1", {
+    className: "Home_title"
+  }, "Git Instigator"), _react.default.createElement("h2", {
+    className: "Home_description"
+  }, "A web app that keeps you motivated"), _react.default.createElement("form", {
     onSubmit: handleSubmit
   }, _react.default.createElement("label", null, "Name:", _react.default.createElement("input", {
     type: "text",
     value: user,
     onChange: handleChange
+  })), _react.default.createElement("label", null, "Email:", _react.default.createElement("input", {
+    type: "text",
+    value: email,
+    onChange: handleChangeEmail
   })), _react.default.createElement("input", {
     type: "submit",
     value: "Submit"
-  })));
+  })), _react.default.createElement("p", {
+    className: "Home_text"
+  }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."));
 };
 
 var _default = Home;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../utils/getReposFromUser.js":"utils/getReposFromUser.js","../utils/getTimesFromRepos.js":"utils/getTimesFromRepos.js","../utils/checkRepoDate.js":"utils/checkRepoDate.js"}],"components/app.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../utils/getReposFromUser.js":"utils/getReposFromUser.js","../utils/getTimesFromRepos.js":"utils/getTimesFromRepos.js","../utils/checkRepoDate.js":"utils/checkRepoDate.js","../styles/Home.scss":"styles/Home.scss"}],"styles/App.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32680,15 +32780,19 @@ var _react = _interopRequireDefault(require("react"));
 
 var _Home = _interopRequireDefault(require("./Home.js"));
 
+require("../styles/App.scss");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return _react.default.createElement("div", null, _react.default.createElement(_Home.default, null));
+  return _react.default.createElement("div", {
+    className: "App"
+  }, _react.default.createElement(_Home.default, null));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./Home.js":"components/Home.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Home.js":"components/Home.js","../styles/App.scss":"styles/App.scss"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -32730,7 +32834,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57675" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63605" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

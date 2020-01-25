@@ -36,6 +36,7 @@
     "concurrently": "^5.0.2",
     "nodemon": "^2.0.2",
     "parcel-bundler": "^1.12.4",
-    "regenerator-runtime": "^0.13.3"
+    "regenerator-runtime": "^0.13.3",
+    "sass": "^1.25.1-test.1"
   }
 }
