@@ -49,6 +49,8 @@ let user = new User({
 // });
 // res.send("sent");
 
-app.get("/user", (req, res) => {});
+app.get("/user", (req, res) => {
+  console.log(req.query);
+});
 
 app.listen(3000, () => console.log("Listening on port 3000!"));

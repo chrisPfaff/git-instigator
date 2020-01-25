@@ -11,10 +11,11 @@ const Home = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    getReposFromUser(user).then(data => {
-      const repos = getTimesFromRepos(data);
-      checkRepoDate(repos);
-    });
+    fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
+    // getReposFromUser(user).then(data => {
+    //   const repos = getTimesFromRepos(data);
+    //   checkRepoDate(repos);
+    // });
   };
   const handleChange = e => {
     setUser(e.target.value);
@@ -40,7 +41,6 @@ const Home = () => {
         <input type="submit" value="Submit" />
       </form>
       <p className="Home_text">
-        {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper
         laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi
         vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna

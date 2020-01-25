@@ -32711,10 +32711,10 @@ var Home = function Home() {
           switch (_context.prev = _context.next) {
             case 0:
               e.preventDefault();
-              (0, _getReposFromUser.default)(user).then(function (data) {
-                var repos = (0, _getTimesFromRepos.default)(data);
-                (0, _checkRepoDate.default)(repos);
-              });
+              fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email)); // getReposFromUser(user).then(data => {
+              //   const repos = getTimesFromRepos(data);
+              //   checkRepoDate(repos);
+              // });
 
             case 2:
             case "end":
@@ -32759,7 +32759,7 @@ var Home = function Home() {
     value: "Submit"
   })), _react.default.createElement("p", {
     className: "Home_text"
-  }, " ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."));
+  }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."));
 };
 
 var _default = Home;
@@ -32835,7 +32835,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64342" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64589" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
