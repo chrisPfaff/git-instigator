@@ -32744,6 +32744,7 @@ var Home = function Home() {
   }, "Git Instigator"), _react.default.createElement("h2", {
     className: "Home_description"
   }, "A web app that keeps you motivated"), _react.default.createElement("form", {
+    className: "Home_form",
     onSubmit: handleSubmit
   }, _react.default.createElement("label", null, "Name:", _react.default.createElement("input", {
     type: "text",
@@ -32834,7 +32835,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63605" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63940" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

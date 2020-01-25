@@ -28,7 +28,7 @@ const Home = () => {
     <div className="Home">
       <h1 className="Home_title">Git Instigator</h1>
       <h2 className="Home_description">A web app that keeps you motivated</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="Home_form" onSubmit={handleSubmit}>
         <label>
           Name:
           <input type="text" value={user} onChange={handleChange} />

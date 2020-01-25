@@ -1,6 +1,26 @@
+@import url("https://fonts.googleapis.com/css?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Bangers|Open+Sans&display=swap");
+
 .Home {
-  width: 50%;
+  width: 60%;
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  &_title {
+    font-family: "Bangers", cursive;
+    font-size: 80px;
+  }
+  &_description {
+    font-family: "Bangers", cursive;
+    font-size: 30px;
+  }
+  &_form {
+    margin-top: 70px;
+    padding-bottom: 90px;
+  }
+  &_text {
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+  }
 }
