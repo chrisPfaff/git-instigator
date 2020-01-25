@@ -50,7 +50,16 @@ let user = new User({
 // res.send("sent");
 
 app.get("/user", (req, res) => {
-  console.log(req.query);
+  console.log(req.query.user, req.query.email);
+  let user = new User({
+    name: req.query.user,
+    email: req.query.email
+  });
+
+  user.save(function(err, user) {
+    if (err) return console.error(err);
+    console.log("user created");
+  });
 });
 
 app.listen(3000, () => console.log("Listening on port 3000!"));
