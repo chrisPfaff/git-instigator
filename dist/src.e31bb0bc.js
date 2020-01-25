@@ -32695,10 +32695,10 @@ var Home = function Home() {
       email = _useState4[0],
       setEmail = _useState4[1];
 
-  var _useState5 = (0, _react.useState)([]),
+  var _useState5 = (0, _react.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      repos = _useState6[0],
-      setRepos = _useState6[1];
+      submitted = _useState6[0],
+      isSubmitted = _useState6[1];
 
   var handleSubmit =
   /*#__PURE__*/
@@ -32711,12 +32711,13 @@ var Home = function Home() {
           switch (_context.prev = _context.next) {
             case 0:
               e.preventDefault();
-              fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email)); // getReposFromUser(user).then(data => {
+              fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email));
+              isSubmitted(!submitted); // getReposFromUser(user).then(data => {
               //   const repos = getTimesFromRepos(data);
               //   checkRepoDate(repos);
               // });
 
-            case 2:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -32743,7 +32744,9 @@ var Home = function Home() {
     className: "Home_title"
   }, "Git Instigator"), _react.default.createElement("h2", {
     className: "Home_description"
-  }, "A web app that keeps you motivated"), _react.default.createElement("form", {
+  }, "A web app that keeps you motivated"), submitted === false ? null : _react.default.createElement("h2", {
+    className: "Home_description_submitted"
+  }, "Submitted Thanks!!!"), _react.default.createElement("form", {
     className: "Home_form",
     onSubmit: handleSubmit
   }, _react.default.createElement("label", null, "Name:", _react.default.createElement("input", {
@@ -32835,7 +32838,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64589" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50166" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

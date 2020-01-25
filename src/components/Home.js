@@ -7,11 +7,12 @@ import "../styles/Home.scss";
 const Home = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
-  const [repos, setRepos] = useState([]);
+  const [submitted, isSubmitted] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
     fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
+    isSubmitted(!submitted);
     // getReposFromUser(user).then(data => {
     //   const repos = getTimesFromRepos(data);
     //   checkRepoDate(repos);
@@ -29,6 +30,9 @@ const Home = () => {
     <div className="Home">
       <h1 className="Home_title">Git Instigator</h1>
       <h2 className="Home_description">A web app that keeps you motivated</h2>
+      {submitted === false ? null : (
+        <h2 className="Home_description_submitted">Submitted Thanks!!!</h2>
+      )}
       <form className="Home_form" onSubmit={handleSubmit}>
         <label>
           Name:
