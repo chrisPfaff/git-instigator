@@ -40,6 +40,7 @@ const Home = () => {
         <input type="submit" value="Submit" />
       </form>
       <p className="Home_text">
+        {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper
         laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi
         vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna

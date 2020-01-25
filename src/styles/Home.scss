@@ -10,17 +10,24 @@
   &_title {
     font-family: "Bangers", cursive;
     font-size: 80px;
+    text-shadow: 4px 3px 0px #7a7a7a;
   }
   &_description {
     font-family: "Bangers", cursive;
     font-size: 30px;
+    text-shadow: 2px 1px 0px #7a7a7a;
   }
   &_form {
     margin-top: 70px;
     padding-bottom: 90px;
   }
+  &_form > label {
+    font-size: 24px;
+  }
   &_text {
+    text-indent: 50px;
     font-family: "Open Sans", sans-serif;
     font-size: 24px;
+    line-height: 25px;
   }
 }
