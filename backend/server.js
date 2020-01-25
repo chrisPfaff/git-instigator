@@ -1,5 +1,6 @@
 const express = require("express");
 const mailer = require("./mailer.js");
+require("dotenv").config();
 const app = express();
 
 app.use(express.static("dist"));
