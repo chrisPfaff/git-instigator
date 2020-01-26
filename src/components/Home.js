@@ -13,6 +13,8 @@ const Home = () => {
     e.preventDefault();
     fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
     isSubmitted(!submitted);
+    setUser("");
+    setEmail("");
     // getReposFromUser(user).then(data => {
     //   const repos = getTimesFromRepos(data);
     //   checkRepoDate(repos);
@@ -40,7 +42,7 @@ const Home = () => {
         </label>
         <label>
           Email:
-          <input type="text" value={email} onChange={handleChangeEmail} />
+          <input type="email" value={email} onChange={handleChangeEmail} />
         </label>
         <input type="submit" value="Submit" />
       </form>

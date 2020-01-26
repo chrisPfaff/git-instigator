@@ -32712,12 +32712,14 @@ var Home = function Home() {
             case 0:
               e.preventDefault();
               fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email));
-              isSubmitted(!submitted); // getReposFromUser(user).then(data => {
+              isSubmitted(!submitted);
+              setUser("");
+              setEmail(""); // getReposFromUser(user).then(data => {
               //   const repos = getTimesFromRepos(data);
               //   checkRepoDate(repos);
               // });
 
-            case 3:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -32754,7 +32756,7 @@ var Home = function Home() {
     value: user,
     onChange: handleChange
   })), _react.default.createElement("label", null, "Email:", _react.default.createElement("input", {
-    type: "text",
+    type: "email",
     value: email,
     onChange: handleChangeEmail
   })), _react.default.createElement("input", {
@@ -32838,7 +32840,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50166" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50128" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
