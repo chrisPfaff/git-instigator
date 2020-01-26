@@ -1,8 +1,6 @@
 const express = require("express");
-const mailer = require("./mailer.js");
 require("dotenv").config();
-//const mongo = require("mongodb");
-//const MongoClient = require("mongodb").MongoClient;
+const job = require("./cron.js");
 const mongoose = require("mongoose");
 const User = require("./model/User.js");
 const db = mongoose.connection;
@@ -22,10 +20,10 @@ db.once("open", function() {
 });
 
 //test user
-let user = new User({
-  name: "chris",
-  email: "10@gmail.com"
-});
+// let user = new User({
+//   name: "chris",
+//   email: "10@gmail.com"
+// });
 
 //!save user function
 // user.save(function(err, user) {

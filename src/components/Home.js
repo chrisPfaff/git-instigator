@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import getReposFromUser from "../utils/getReposFromUser.js";
-import getTimesFromRepos from "../utils/getTimesFromRepos.js";
-import checkRepoDate from "../utils/checkRepoDate.js";
 import "../styles/Home.scss";
 
 const Home = () => {
@@ -15,10 +12,6 @@ const Home = () => {
     isSubmitted(!submitted);
     setUser("");
     setEmail("");
-    // getReposFromUser(user).then(data => {
-    //   const repos = getTimesFromRepos(data);
-    //   checkRepoDate(repos);
-    // });
   };
   const handleChange = e => {
     setUser(e.target.value);
@@ -37,7 +30,7 @@ const Home = () => {
       )}
       <form className="Home_form" onSubmit={handleSubmit}>
         <label>
-          Name:
+          GitHub Handle:
           <input type="text" value={user} onChange={handleChange} />
         </label>
         <label>

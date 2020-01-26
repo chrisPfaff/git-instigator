@@ -1,6 +1,8 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
+console.log(process.env.EMAIL);
+
 let transporter = nodemailer.createTransport({
   service: "yahoo",
   auth: {

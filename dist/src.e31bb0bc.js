@@ -32714,10 +32714,7 @@ var Home = function Home() {
               fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email));
               isSubmitted(!submitted);
               setUser("");
-              setEmail(""); // getReposFromUser(user).then(data => {
-              //   const repos = getTimesFromRepos(data);
-              //   checkRepoDate(repos);
-              // });
+              setEmail("");
 
             case 5:
             case "end":
@@ -32751,7 +32748,7 @@ var Home = function Home() {
   }, "Submitted Thanks!!!"), _react.default.createElement("form", {
     className: "Home_form",
     onSubmit: handleSubmit
-  }, _react.default.createElement("label", null, "Name:", _react.default.createElement("input", {
+  }, _react.default.createElement("label", null, "GitHub Handle:", _react.default.createElement("input", {
     type: "text",
     value: user,
     onChange: handleChange
@@ -32840,7 +32837,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50128" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50165" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
