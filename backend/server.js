@@ -6,6 +6,7 @@ const User = require("./model/User.js");
 const db = mongoose.connection;
 const url = process.env.MONGO_URI;
 const app = express();
+const port = 3000;
 
 //serve static parcel app
 app.use(express.static("dist"));
@@ -19,7 +20,7 @@ db.once("open", function() {
   console.log("connection open");
 });
 
-//test user
+//!test user
 // let user = new User({
 //   name: "chris",
 //   email: "10@gmail.com"
@@ -60,4 +61,4 @@ app.get("/user", (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log("Listening on port 3000!"));
+app.listen(port, () => console.log("Listening on port 3000!"));

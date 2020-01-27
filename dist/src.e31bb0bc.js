@@ -31730,7 +31730,218 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles/Home.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("../styles/Home.scss");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var Home = function Home() {
+  var _useState = (0, _react.useState)(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      user = _useState2[0],
+      setUser = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      submitted = _useState6[0],
+      isSubmitted = _useState6[1];
+
+  var handleSubmit =
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee(e) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email));
+              isSubmitted(!submitted);
+              setUser("");
+              setEmail("");
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function handleSubmit(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var handleChange = function handleChange(e) {
+    setUser(e.target.value);
+  };
+
+  var handleChangeEmail = function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  };
+
+  return _react.default.createElement("div", {
+    className: "Home"
+  }, _react.default.createElement("h1", {
+    className: "Home_title"
+  }, "Git Instigator"), _react.default.createElement("h2", {
+    className: "Home_description"
+  }, "A web app that keeps you motivated"), submitted === false ? null : _react.default.createElement("h2", {
+    className: "Home_description_submitted"
+  }, "Submitted Thanks!!!"), _react.default.createElement("form", {
+    className: "Home_form",
+    onSubmit: handleSubmit
+  }, _react.default.createElement("label", null, "GitHub Handle:", _react.default.createElement("input", {
+    type: "text",
+    value: user,
+    onChange: handleChange
+  })), _react.default.createElement("label", null, "Email:", _react.default.createElement("input", {
+    type: "email",
+    value: email,
+    onChange: handleChangeEmail
+  })), _react.default.createElement("input", {
+    type: "submit",
+    value: "Submit"
+  })), _react.default.createElement("p", {
+    className: "Home_text"
+  }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."));
+};
+
+var _default = Home;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","../styles/Home.scss":"styles/Home.scss"}],"styles/App.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/app.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Home = _interopRequireDefault(require("./Home.js"));
+
+require("../styles/App.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  return _react.default.createElement("div", {
+    className: "App"
+  }, _react.default.createElement(_Home.default, null));
+};
+
+var _default = App;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","./Home.js":"components/Home.js","../styles/App.scss":"styles/App.scss"}],"../node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -32458,344 +32669,7 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],"utils/getReposFromUser.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-require("regenerator-runtime/runtime");
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var getReposFromUser =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(user) {
-    var data, repoList;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return fetch("https://api.github.com/users/".concat(user)).then(function (res) {
-              return res.json();
-            });
-
-          case 2:
-            data = _context.sent;
-            _context.next = 5;
-            return fetch("".concat(data.repos_url, "?per_page=150")).then(function (res) {
-              return res.json();
-            });
-
-          case 5:
-            repoList = _context.sent;
-            return _context.abrupt("return", repoList);
-
-          case 7:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function getReposFromUser(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var _default = getReposFromUser;
-exports.default = _default;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"utils/getTimesFromRepos.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-require("regenerator-runtime/runtime");
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var getTimesFromRepos =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(repos) {
-    var repoList;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            repoList = repos.map(function (item) {
-              return [item.updated_at.slice(0, 10), item.name, item.html_url];
-            });
-            console.log(repoList);
-
-          case 2:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function getTimesFromRepos(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var _default = getTimesFromRepos;
-exports.default = _default;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"utils/checkRepoDate.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-require("regenerator-runtime/runtime");
-
-var checkRepoDate = function checkRepoDate(repos) {
-  var time = new Date();
-  console.log(String(time).slice(4, 15) === "Jan 24 2020");
-};
-
-var _default = checkRepoDate;
-exports.default = _default;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles/Home.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Home.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _getReposFromUser = _interopRequireDefault(require("../utils/getReposFromUser.js"));
-
-var _getTimesFromRepos = _interopRequireDefault(require("../utils/getTimesFromRepos.js"));
-
-var _checkRepoDate = _interopRequireDefault(require("../utils/checkRepoDate.js"));
-
-require("../styles/Home.scss");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var Home = function Home() {
-  var _useState = (0, _react.useState)(""),
-      _useState2 = _slicedToArray(_useState, 2),
-      user = _useState2[0],
-      setUser = _useState2[1];
-
-  var _useState3 = (0, _react.useState)(""),
-      _useState4 = _slicedToArray(_useState3, 2),
-      email = _useState4[0],
-      setEmail = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      submitted = _useState6[0],
-      isSubmitted = _useState6[1];
-
-  var handleSubmit =
-  /*#__PURE__*/
-  function () {
-    var _ref = _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee(e) {
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              e.preventDefault();
-              fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email));
-              isSubmitted(!submitted);
-              setUser("");
-              setEmail("");
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function handleSubmit(_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  var handleChange = function handleChange(e) {
-    setUser(e.target.value);
-  };
-
-  var handleChangeEmail = function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  };
-
-  return _react.default.createElement("div", {
-    className: "Home"
-  }, _react.default.createElement("h1", {
-    className: "Home_title"
-  }, "Git Instigator"), _react.default.createElement("h2", {
-    className: "Home_description"
-  }, "A web app that keeps you motivated"), submitted === false ? null : _react.default.createElement("h2", {
-    className: "Home_description_submitted"
-  }, "Submitted Thanks!!!"), _react.default.createElement("form", {
-    className: "Home_form",
-    onSubmit: handleSubmit
-  }, _react.default.createElement("label", null, "GitHub Handle:", _react.default.createElement("input", {
-    type: "text",
-    value: user,
-    onChange: handleChange
-  })), _react.default.createElement("label", null, "Email:", _react.default.createElement("input", {
-    type: "email",
-    value: email,
-    onChange: handleChangeEmail
-  })), _react.default.createElement("input", {
-    type: "submit",
-    value: "Submit"
-  })), _react.default.createElement("p", {
-    className: "Home_text"
-  }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."));
-};
-
-var _default = Home;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","../utils/getReposFromUser.js":"utils/getReposFromUser.js","../utils/getTimesFromRepos.js":"utils/getTimesFromRepos.js","../utils/checkRepoDate.js":"utils/checkRepoDate.js","../styles/Home.scss":"styles/Home.scss"}],"styles/App.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/app.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _Home = _interopRequireDefault(require("./Home.js"));
-
-require("../styles/App.scss");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var App = function App() {
-  return _react.default.createElement("div", {
-    className: "App"
-  }, _react.default.createElement(_Home.default, null));
-};
-
-var _default = App;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","./Home.js":"components/Home.js","../styles/App.scss":"styles/App.scss"}],"index.js":[function(require,module,exports) {
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -32837,7 +32711,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50165" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63344" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
