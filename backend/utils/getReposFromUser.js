@@ -1,5 +1,4 @@
-import "regenerator-runtime/runtime";
-
+require("regenerator-runtime/runtime");
 const getReposFromUser = async user => {
   const data = await fetch(`https://api.github.com/users/${user}`).then(res => {
     return res.json();

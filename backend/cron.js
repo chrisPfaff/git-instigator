@@ -21,9 +21,38 @@ require("dotenv").config();
 //!cron job time
 //"30 18 * * *"
 
-const job = new CronJob(
-  "* * * * *",
+// const DatabaseJob = new CronJob(
+//   "0/20 0 0 * * *",
+//   function() {
+//     let find = User.find({}, function(err, user) {
+//       if (err) return handleError(err);
+//       return user;
+//     });
+//     find.exec().then(data => {
+//       for (const key in data) {
+//         //console.log(data[key].email);
+//         mailer.transporter.sendMail(
+//           mailer.mailOptions(data[key].email),
+//           function(error, info) {
+//             if (error) {
+//               console.log(error);
+//             } else {
+//               console.log("Email sent: " + info.response);
+//             }
+//           }
+//         );
+//       }
+//     });
+//   },
+//   null,
+//   true,
+//   "America/Chicago"
+// );
+
+const EmailJob = new CronJob(
+  "* * * * * *",
   function() {
+    console.log("hello");
     let find = User.find({}, function(err, user) {
       if (err) return handleError(err);
       return user;
@@ -49,6 +78,9 @@ const job = new CronJob(
   "America/Chicago"
 );
 
-job.start();
+// DatabaseJob.start();
+EmailJob.start();
 
-module.exports = job;
+module.exports = {
+  EmailJob: EmailJob
+};

@@ -13,8 +13,8 @@ let mailOptions = email => {
   return {
     from: process.env.EMAIL,
     to: email,
-    subject: "Git Instigator",
-    text: "You haven't committed anything all day get to work!"
+    subject: `has a message from Git Instigator`,
+    text: `You haven't committed anything all day get to work`
   };
 };
 
