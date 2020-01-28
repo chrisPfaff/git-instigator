@@ -1,6 +1,5 @@
 const express = require("express");
 require("dotenv").config();
-require("regenerator-runtime/runtime");
 const job = require("./cron.js");
 const mongoose = require("mongoose");
 const User = require("./model/User.js");

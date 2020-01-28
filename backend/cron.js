@@ -24,7 +24,7 @@ require("dotenv").config();
 const DatabaseJob = new CronJob(
   "10 * * * * *",
   function() {
-    console.log("database query");
+    checkRepoDate();
   },
   null,
   true,
@@ -41,9 +41,9 @@ const EmailJob = new CronJob(
     });
     find.exec().then(data => {
       for (const key in data) {
-        //console.log(data[key].email);
+        console.log(data[key].name);
         mailer.transporter.sendMail(
-          mailer.mailOptions(data[key].email),
+          mailer.mailOptions(data[key].email, data[key].name),
           function(error, info) {
             if (error) {
               console.log(error);

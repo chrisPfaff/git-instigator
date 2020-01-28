@@ -1,4 +1,4 @@
-require("regenerator-runtime/runtime");
+const fetch = require("node-fetch");
 
 const getTimesFromRepos = async repos => {
   let repoList = repos.map(item => {

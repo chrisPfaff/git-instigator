@@ -1,4 +1,4 @@
-require("regenerator-runtime/runtime");
+const fetch = require("node-fetch");
 
 const checkRepoDate = repos => {
   let time = new Date();

@@ -1,4 +1,5 @@
-require("regenerator-runtime/runtime");
+const fetch = require("node-fetch");
+
 const getReposFromUser = async user => {
   const data = await fetch(`https://api.github.com/users/${user}`).then(res => {
     return res.json();
@@ -9,4 +10,4 @@ const getReposFromUser = async user => {
   return repoList;
 };
 
-export default getReposFromUser;
+module.exports = getReposFromUser;
