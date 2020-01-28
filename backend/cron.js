@@ -24,7 +24,10 @@ require("dotenv").config();
 const DatabaseJob = new CronJob(
   "10 * * * * *",
   function() {
+    //!testing utils
     checkRepoDate();
+    getReposFromUser();
+    getTimesFromRepos();
   },
   null,
   true,
