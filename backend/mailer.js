@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
+const CronJob = require("cron").CronJob;
 require("dotenv").config();
-
-console.log(process.env.EMAIL);
 
 let transporter = nodemailer.createTransport({
   service: "yahoo",
@@ -11,11 +10,13 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-let mailOptions = {
-  from: process.env.EMAIL,
-  to: "*",
-  subject: "Sending Email using Node.js",
-  text: "HI BABE"
+let mailOptions = email => {
+  return {
+    from: process.env.EMAIL,
+    to: email,
+    subject: "Sending Email using Node.js",
+    text: "HI BABE"
+  };
 };
 
 module.exports = {
