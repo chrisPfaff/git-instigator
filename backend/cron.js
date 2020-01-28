@@ -3,22 +3,41 @@ const mailer = require("./mailer.js");
 const User = require("./model/User.js");
 require("dotenv").config();
 
-//console.log(mailer.mailOptions, mailer.transporter);
+//console.log(mailer.mailOptions());
 
-// mailer.transporter.sendMail(mailOptions, function(error, info) {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log("Email sent: " + info.response);
-//   }
+//! how to grab data from query
+// let x = User.find({}, function(err, user) {
+//   if (err) return handleError(err);
+//   return user;
 // });
 
+// x.exec((err, user) => {
+//   console.log(user[0].name);
+// });
+//!cron job time
+//"30 18 * * *"
+
 const job = new CronJob(
-  "30 18 * * *",
+  "* * * * *",
   function() {
-    User.find({}, function(err, user) {
+    let find = User.find({}, function(err, user) {
       if (err) return handleError(err);
-      console.log(user);
+      return user;
+    });
+    find.exec().then(data => {
+      for (const key in data) {
+        //console.log(data[key].email);
+        mailer.transporter.sendMail(
+          mailer.mailOptions(data[key].email),
+          function(error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          }
+        );
+      }
     });
   },
   null,
