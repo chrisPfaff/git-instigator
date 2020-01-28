@@ -50,7 +50,7 @@ require("dotenv").config();
 // );
 
 const EmailJob = new CronJob(
-  "* * * * * *",
+  "10 * * * * *",
   function() {
     console.log("hello");
     let find = User.find({}, function(err, user) {
