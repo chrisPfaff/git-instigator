@@ -1,6 +1,10 @@
 const CronJob = require("cron").CronJob;
 const mailer = require("./mailer.js");
 const User = require("./model/User.js");
+const getReposFromUser = require("./utils/getTimesFromRepos.js");
+const getTimesFromRepos = require("./utils/getTimesFromRepos.js");
+const checkRepoDate = require("./utils/checkRepoDate.js");
+
 require("dotenv").config();
 
 //console.log(mailer.mailOptions());
