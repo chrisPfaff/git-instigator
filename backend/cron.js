@@ -25,9 +25,8 @@ const DatabaseJob = new CronJob(
   "10 * * * * *",
   function() {
     //!testing utils
-    checkRepoDate();
-    getReposFromUser();
-    getTimesFromRepos();
+    //checkRepoDate();
+    getReposFromUser("chrisPfaff");
   },
   null,
   true,
@@ -35,7 +34,7 @@ const DatabaseJob = new CronJob(
 );
 
 const EmailJob = new CronJob(
-  "20 * * * * *",
+  "40 * * * * *",
   function() {
     console.log("hello");
     let find = User.find({}, function(err, user) {
