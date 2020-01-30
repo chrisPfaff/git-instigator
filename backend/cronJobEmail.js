@@ -44,4 +44,4 @@ const EmailJob = new CronJob(
   "America/Chicago"
 );
 
-module.exports = EmailJob;
+EmailJob.start();

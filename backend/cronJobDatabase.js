@@ -20,4 +20,4 @@ const DatabaseJob = new CronJob(
   "America/Chicago"
 );
 
-module.exports = DatabaseJob;
+DatabaseJob.start();
