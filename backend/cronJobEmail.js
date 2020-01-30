@@ -1,6 +1,7 @@
 const CronJob = require("cron").CronJob;
 const mailer = require("./mailer.js");
-const User = require("./model/User.js");
+//const User = require("./model/User.js");
+const user = require("./cronJobDatabase");
 const getReposFromUser = require("./utils/getTimesFromRepos.js");
 const getTimesFromRepos = require("./utils/getTimesFromRepos.js");
 const checkRepoDate = require("./utils/checkRepoDate.js");
@@ -22,7 +23,7 @@ require("dotenv").config();
 const EmailJob = new CronJob(
   "20 * * * * *",
   function() {
-    console.log("email starting");
+    console.log(user);
     // find.exec().then(data => {
     //   for (const key in data) {
     //     console.log(data[key].name);
