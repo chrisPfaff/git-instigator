@@ -5,8 +5,16 @@ const getReposFromUser = require("./utils/getTimesFromRepos.js");
 const getTimesFromRepos = require("./utils/getTimesFromRepos.js");
 const checkRepoDate = require("./utils/checkRepoDate.js");
 
+//! best way to pass data to multiple jobs
+let data;
+
+const job = schedule.scheduleJob("5 * * * * *", function() {
+  console.log("here");
+  data = "hello chris";
+});
+
 const DatabaseJob = schedule.scheduleJob("10 * * * * *", function() {
-  console.log(getReposFromUser, getTimesFromRepos, checkRepoDate);
+  console.log(data);
   let find = User.find({}, function(err, user) {
     if (err) return handleError(err);
     return user;
