@@ -18,17 +18,13 @@ const checkRepoDate = require("./utils/checkRepoDate.js");
 //   "America/Chicago"
 // );
 
-module.exports.DatabaseJob = schedule.scheduleJob(
-  "10 * * * * *",
-  function() {
-    console.log("in here");
-    User.find({}, function(err, user) {
-      if (err) return handleError(err);
-      console.log(user);
-      return user;
-    });
-  },
-  null,
-  true,
-  "America/Chicago"
-);
+const DatabaseJob = schedule.scheduleJob("10 * * * * *", function() {
+  console.log("in");
+  User.find({}, function(err, user) {
+    if (err) return handleError(err);
+    console.log(user);
+    return user;
+  });
+});
+
+module.exports = DatabaseJob;
