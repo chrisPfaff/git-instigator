@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 require("./cronJobEmail.js");
-const dataBaseJob = require("./cronJobDatabase.js");
+require("./cronJobDatabase.js");
 const mongoose = require("mongoose");
 const User = require("./model/User.js");
 const db = mongoose.connection;
