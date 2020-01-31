@@ -5,25 +5,26 @@ const getReposFromUser = require("./utils/getTimesFromRepos.js");
 const getTimesFromRepos = require("./utils/getTimesFromRepos.js");
 const checkRepoDate = require("./utils/checkRepoDate.js");
 
-// const DatabaseJob = new CronJob(
-//   "10 * * * * *",
-//   function() {
-//     User.find({}, function(err, user) {
-//       if (err) return handleError(err);
-//       return DatabaseJob;
-//     });
-//   },
-//   null,
-//   true,
-//   "America/Chicago"
-// );
-
 const DatabaseJob = schedule.scheduleJob("10 * * * * *", function() {
-  console.log("in");
-  User.find({}, function(err, user) {
+  console.log(getReposFromUser, getTimesFromRepos, checkRepoDate);
+  let find = User.find({}, function(err, user) {
     if (err) return handleError(err);
-    console.log(user);
     return user;
+  });
+  find.exec().then(data => {
+    for (const key in data) {
+      console.log(data[key].name);
+      mailer.transporter.sendMail(
+        mailer.mailOptions(data[key].email, data[key].name),
+        function(error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent: " + info.response);
+          }
+        }
+      );
+    }
   });
 });
 
