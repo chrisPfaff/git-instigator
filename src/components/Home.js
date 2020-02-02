@@ -25,16 +25,16 @@ const Home = () => {
     <div className="Home">
       <h1 className="Home_title">Git Instigator</h1>
       <h2 className="Home_description">A web app that keeps you motivated</h2>
-      {submitted === false ? null : (
+      {/* {submitted === false ? null : (
         <h2 className="Home_description_submitted">Submitted Thanks!!!</h2>
-      )}
+      )} */}
       <form className="Home_form" onSubmit={handleSubmit}>
         <label>
-          GitHub Handle:
+          GitHub Handle :
           <input type="text" value={user} onChange={handleChange} />
         </label>
         <label>
-          Email:
+          Email :
           <input type="email" value={email} onChange={handleChangeEmail} />
         </label>
         <input type="submit" value="Submit" />

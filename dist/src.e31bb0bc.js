@@ -31889,16 +31889,14 @@ var Home = function Home() {
     className: "Home_title"
   }, "Git Instigator"), _react.default.createElement("h2", {
     className: "Home_description"
-  }, "A web app that keeps you motivated"), submitted === false ? null : _react.default.createElement("h2", {
-    className: "Home_description_submitted"
-  }, "Submitted Thanks!!!"), _react.default.createElement("form", {
+  }, "A web app that keeps you motivated"), _react.default.createElement("form", {
     className: "Home_form",
     onSubmit: handleSubmit
-  }, _react.default.createElement("label", null, "GitHub Handle:", _react.default.createElement("input", {
+  }, _react.default.createElement("label", null, "GitHub Handle :", _react.default.createElement("input", {
     type: "text",
     value: user,
     onChange: handleChange
-  })), _react.default.createElement("label", null, "Email:", _react.default.createElement("input", {
+  })), _react.default.createElement("label", null, "Email :", _react.default.createElement("input", {
     type: "email",
     value: email,
     onChange: handleChangeEmail
@@ -32711,7 +32709,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51510" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55477" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
