@@ -5,6 +5,7 @@ const Home = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const notificationRef = useRef(null);
+  const notificationRefFail = useRef(null);
   const [submitted, isSubmitted] = useState(false);
 
   const handleSubmit = async e => {
@@ -65,7 +66,7 @@ const Home = () => {
         <p>Success</p>
       </div>
       <div
-        ref={notificationRef}
+        ref={notificationRefFail}
         id="notificationFail"
         className="notificationFail"
       >
