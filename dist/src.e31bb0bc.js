@@ -31802,7 +31802,252 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Home.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/notifyjs/dist/notify.js":[function(require,module,exports) {
+var define;
+var global = arguments[3];
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Notify = factory());
+}(this, (function () { 'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var objectWithoutProperties = function (obj, keys) {
+  var target = {};
+
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+
+  return target;
+};
+
+/*
+ * Author: Alex Gibson
+ * https://github.com/alexgibson/notify.js
+ * License: MIT license
+ */
+
+var N = window.Notification;
+
+function isFunction(item) {
+    return typeof item === 'function';
+}
+
+function Notify(title) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+
+    if (typeof title !== 'string') {
+        throw new Error('Notify(): first arg (title) must be a string.');
+    }
+
+    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') {
+        throw new Error('Notify(): second arg (options) must be an object.');
+    }
+
+    var _options$notifyShow = options.notifyShow,
+        notifyShow = _options$notifyShow === undefined ? null : _options$notifyShow,
+        _options$notifyClose = options.notifyClose,
+        notifyClose = _options$notifyClose === undefined ? null : _options$notifyClose,
+        _options$notifyClick = options.notifyClick,
+        notifyClick = _options$notifyClick === undefined ? null : _options$notifyClick,
+        _options$notifyError = options.notifyError,
+        notifyError = _options$notifyError === undefined ? null : _options$notifyError,
+        _options$closeOnClick = options.closeOnClick,
+        closeOnClick = _options$closeOnClick === undefined ? false : _options$closeOnClick,
+        _options$timeout = options.timeout,
+        timeout = _options$timeout === undefined ? null : _options$timeout,
+        rest = objectWithoutProperties(options, ['notifyShow', 'notifyClose', 'notifyClick', 'notifyError', 'closeOnClick', 'timeout']);
+
+
+    this.title = title;
+    this.options = rest;
+    this.permission = null;
+    this.closeOnClick = closeOnClick;
+    this.timeout = timeout;
+
+    //callback when notification is displayed
+    if (isFunction(notifyShow)) {
+        this.onShowCallback = notifyShow;
+    }
+
+    //callback when notification is closed
+    if (isFunction(notifyClose)) {
+        this.onCloseCallback = notifyClose;
+    }
+
+    //callback when notification is clicked
+    if (isFunction(notifyClick)) {
+        this.onClickCallback = notifyClick;
+    }
+
+    //callback when notification throws error
+    if (isFunction(notifyError)) {
+        this.onErrorCallback = notifyError;
+    }
+}
+
+// returns true if the browser supports Web Notifications
+// https://developers.google.com/web/updates/2015/05/Notifying-you-of-notificiation-changes
+// @param {perm} for test purposes only
+Notify.isSupported = function (perm) {
+    if (!N || !N.requestPermission) {
+        return false;
+    }
+
+    if (perm === 'granted' || N.permission === 'granted') {
+        throw new Error('You must only call this before calling Notification.requestPermission(), otherwise this feature detect would trigger an actual notification!');
+    }
+
+    try {
+        new N('');
+    } catch (e) {
+        if (e.name === 'TypeError') {
+            return false;
+        }
+    }
+    return true;
+};
+
+// true if the permission is not granted
+Notify.needsPermission = N && N.permission && N.permission === 'granted' ? false : true;
+
+// asks the user for permission to display notifications.  Then calls the callback functions is supplied.
+Notify.requestPermission = function (onPermissionGrantedCallback, onPermissionDeniedCallback) {
+    N.requestPermission(function (perm) {
+        switch (perm) {
+            case 'granted':
+                Notify.needsPermission = false;
+                if (isFunction(onPermissionGrantedCallback)) {
+                    onPermissionGrantedCallback();
+                }
+                break;
+            case 'denied':
+                Notify.needsPermission = true;
+                if (isFunction(onPermissionDeniedCallback)) {
+                    onPermissionDeniedCallback();
+                }
+                break;
+        }
+    });
+};
+
+Notify.prototype.show = function () {
+    this.myNotify = new N(this.title, this.options);
+
+    if (!this.options.requireInteraction && this.timeout && !isNaN(this.timeout)) {
+        setTimeout(this.close.bind(this), this.timeout * 1000);
+    }
+
+    this.myNotify.addEventListener('show', this, false);
+    this.myNotify.addEventListener('error', this, false);
+    this.myNotify.addEventListener('close', this, false);
+    this.myNotify.addEventListener('click', this, false);
+};
+
+Notify.prototype.onShowNotification = function (e) {
+    if (this.onShowCallback) {
+        this.onShowCallback(e);
+    }
+};
+
+Notify.prototype.onCloseNotification = function (e) {
+    if (this.onCloseCallback) {
+        this.onCloseCallback(e);
+    }
+    this.destroy();
+};
+
+Notify.prototype.onClickNotification = function (e) {
+    if (this.onClickCallback) {
+        this.onClickCallback(e);
+    }
+
+    if (this.closeOnClick) {
+        this.close();
+    }
+};
+
+Notify.prototype.onErrorNotification = function (e) {
+    if (this.onErrorCallback) {
+        this.onErrorCallback(e);
+    }
+    this.destroy();
+};
+
+Notify.prototype.destroy = function () {
+    this.myNotify.removeEventListener('show', this, false);
+    this.myNotify.removeEventListener('error', this, false);
+    this.myNotify.removeEventListener('close', this, false);
+    this.myNotify.removeEventListener('click', this, false);
+};
+
+Notify.prototype.close = function () {
+    this.myNotify.close();
+};
+
+Notify.prototype.handleEvent = function (e) {
+    switch (e.type) {
+        case 'show':
+            this.onShowNotification(e);
+            break;
+        case 'close':
+            this.onCloseNotification(e);
+            break;
+        case 'click':
+            this.onClickNotification(e);
+            break;
+        case 'error':
+            this.onErrorNotification(e);
+            break;
+    }
+};
+
+return Notify;
+
+})));
+
+},{}],"components/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31813,6 +32058,10 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 require("../styles/Home.scss");
+
+var _notifyjs = _interopRequireDefault(require("notifyjs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -31905,12 +32154,14 @@ var Home = function Home() {
     value: "Submit"
   })), _react.default.createElement("p", {
     className: "Home_text"
-  }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."));
+  }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."), _react.default.createElement("div", {
+    id: "notification"
+  }, _react.default.createElement("p", null, "Success")));
 };
 
 var _default = Home;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../styles/Home.scss":"styles/Home.scss"}],"styles/App.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../styles/Home.scss":"styles/Home.scss","notifyjs":"../node_modules/notifyjs/dist/notify.js"}],"styles/App.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -32709,7 +32960,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55477" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63790" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

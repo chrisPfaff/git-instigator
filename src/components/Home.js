@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Home.scss";
+import Notify from "notifyjs";
 
 const Home = () => {
   const [user, setUser] = useState("");
@@ -25,9 +26,6 @@ const Home = () => {
     <div className="Home">
       <h1 className="Home_title">Git Instigator</h1>
       <h2 className="Home_description">A web app that keeps you motivated</h2>
-      {/* {submitted === false ? null : (
-        <h2 className="Home_description_submitted">Submitted Thanks!!!</h2>
-      )} */}
       <form className="Home_form" onSubmit={handleSubmit}>
         <label>
           GitHub Handle :
@@ -56,6 +54,9 @@ const Home = () => {
         vulputate venenatis diam congue sollicitudin. Cras tortor est,
         condimentum a semper sit amet, dapibus nec leo.
       </p>
+      <div id="notification">
+        <p>Success</p>
+      </div>
     </div>
   );
 };

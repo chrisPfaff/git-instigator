@@ -39,10 +39,6 @@
     line-height: 25px;
   }
 }
-
-label {
-}
-
 input[type="submit"] {
   padding: 7px 12px;
   font-size: 24px;
@@ -67,6 +63,22 @@ input[type="submit"]:active {
   background-color: #7a7a7a;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+#notification {
+  display: none;
+  font-family: "Bangers", cursive;
+  font-size: 30px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background: #7a7a7a;
+  width: 350px;
 }
 
 input[type="text"],
