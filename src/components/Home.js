@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import "../styles/Home.scss";
-import Notify from "notifyjs";
 
 const Home = () => {
   const [user, setUser] = useState("");
@@ -12,11 +11,12 @@ const Home = () => {
     e.preventDefault();
     //fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
     isSubmitted(!submitted);
-    notificationRef.current.style.opacity = 1;
-    notificationRef.current.style.visibility = "visible";
+    console.log(notificationRef.current);
+    notificationRef.current.classList.add("fadeIn");
     setTimeout(() => {
-      notificationRef.current.style.opacity = 0;
-      notificationRef.current.style.visibility = "hidden";
+      console.log("hello");
+      notificationRef.current.classList.remove("fadeIn");
+      notificationRef.current.classList.add("fadeOut");
     }, 3000);
     setUser("");
     setEmail("");
@@ -61,8 +61,15 @@ const Home = () => {
         vulputate venenatis diam congue sollicitudin. Cras tortor est,
         condimentum a semper sit amet, dapibus nec leo.
       </p>
-      <div ref={notificationRef} id="notification">
+      <div ref={notificationRef} id="notification" className="notification">
         <p>Success</p>
+      </div>
+      <div
+        ref={notificationRef}
+        id="notificationFail"
+        className="notificationFail"
+      >
+        <p>Item not submitted</p>
       </div>
     </div>
   );

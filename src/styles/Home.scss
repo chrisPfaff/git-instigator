@@ -3,7 +3,9 @@
 
 .Home {
   width: 60%;
+  height: 100vh;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 
@@ -27,7 +29,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-    padding-bottom: 30px;
+    margin-bottom: 30px;
   }
   &_form > label {
     font-size: 24px;
@@ -37,6 +39,7 @@
     font-family: "Open Sans", sans-serif;
     font-size: 24px;
     line-height: 25px;
+    padding-bottom: 30px;
   }
 }
 input[type="submit"] {
@@ -65,21 +68,35 @@ input[type="submit"]:active {
   transform: translateY(4px);
 }
 
-#notification {
+.notification {
   visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
   font-family: "Bangers", cursive;
   font-size: 30px;
   text-align: center;
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
   padding: 10px;
   margin-bottom: 15px;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-  background: #7a7a7a;
+  background: #dff2bf;
+  width: 350px;
+}
+
+.notificationFail {
+  visibility: hidden;
+  font-family: "Bangers", cursive;
+  font-size: 30px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background: #ffd2d2;
   width: 350px;
 }
 
@@ -92,4 +109,15 @@ input[type="email"] {
   font-family: "Open Sans", sans-serif;
   margin: 4px 2px;
   border-radius: 4px;
+}
+
+.fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 3000ms, opacity 3000ms;
+}
+.fadeIn {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
 }

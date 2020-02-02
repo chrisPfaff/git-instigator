@@ -126,10 +126,14 @@ html {
 }
 
 .App {
-  background-color: #011936;
-  height: 100vh;
   color: #70ae6e;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+html {
+  background-color: #011936;
+  height: 100%;
+  margin: 0;
 }
