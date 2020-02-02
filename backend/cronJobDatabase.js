@@ -1,7 +1,6 @@
 const schedule = require("node-schedule");
 const mailer = require("./mailer.js");
 const User = require("./model/User.js");
-const Repo = require("./model/Repo.js");
 const getReposFromUsers = require("./utils/getReposFromUsers.js");
 const getTimesFromRepos = require("./utils/getTimesFromRepos.js");
 const checkRepoDate = require("./utils/checkRepoDate.js");
