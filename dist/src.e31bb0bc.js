@@ -32090,6 +32090,8 @@ var Home = function Home() {
       email = _useState4[0],
       setEmail = _useState4[1];
 
+  var notificationRef = (0, _react.useRef)(null);
+
   var _useState5 = (0, _react.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       submitted = _useState6[0],
@@ -32105,13 +32107,19 @@ var Home = function Home() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              e.preventDefault();
-              fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email));
+              e.preventDefault(); //fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
+
               isSubmitted(!submitted);
+              notificationRef.current.style.opacity = 1;
+              notificationRef.current.style.visibility = "visible";
+              setTimeout(function () {
+                notificationRef.current.style.opacity = 0;
+                notificationRef.current.style.visibility = "hidden";
+              }, 3000);
               setUser("");
               setEmail("");
 
-            case 5:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -32155,6 +32163,7 @@ var Home = function Home() {
   })), _react.default.createElement("p", {
     className: "Home_text"
   }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."), _react.default.createElement("div", {
+    ref: notificationRef,
     id: "notification"
   }, _react.default.createElement("p", null, "Success")));
 };
@@ -32960,7 +32969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63790" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54883" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

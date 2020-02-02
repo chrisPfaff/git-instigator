@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../styles/Home.scss";
 import Notify from "notifyjs";
 
 const Home = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
+  const notificationRef = useRef(null);
   const [submitted, isSubmitted] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
+    //fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
     isSubmitted(!submitted);
+    notificationRef.current.style.opacity = 1;
+    notificationRef.current.style.visibility = "visible";
+    setTimeout(() => {
+      notificationRef.current.style.opacity = 0;
+      notificationRef.current.style.visibility = "hidden";
+    }, 3000);
     setUser("");
     setEmail("");
   };
@@ -54,7 +61,7 @@ const Home = () => {
         vulputate venenatis diam congue sollicitudin. Cras tortor est,
         condimentum a semper sit amet, dapibus nec leo.
       </p>
-      <div id="notification">
+      <div ref={notificationRef} id="notification">
         <p>Success</p>
       </div>
     </div>
