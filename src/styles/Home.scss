@@ -23,8 +23,11 @@
     color: red;
   }
   &_form {
-    margin-top: 70px;
-    padding-bottom: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 40px;
   }
   &_form > label {
     font-size: 24px;
@@ -35,4 +38,27 @@
     font-size: 24px;
     line-height: 25px;
   }
+}
+
+label {
+}
+
+input[type="submit"] {
+  background-color: #70ae6e;
+  border: 2px solid #7a7a7a;
+  color: white;
+  font-size: 30px;
+  font-family: "Open Sans", sans-serif;
+  margin: 4px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type="text"],
+input[type="email"] {
+  background-color: #70ae6e;
+  border: 2px solid #7a7a7a;
+  color: #7a7a7a;
+  font-family: "Open Sans", sans-serif;
+  margin: 4px 2px;
+  border-radius: 4px;
 }
