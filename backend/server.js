@@ -18,15 +18,14 @@ db.once("open", function() {
 });
 
 app.get("/user", (req, res) => {
-  console.log(req.query.user, req.query.email);
   let user = new User({
     name: req.query.user,
     email: req.query.email
   });
-
   user.save(function(err, user) {
-    if (err) return console.error(err);
+    if (err) res.sendStatus(400);
     console.log("user created");
+    res.sendStatus(200);
   });
 });
 
