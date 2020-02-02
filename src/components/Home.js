@@ -6,19 +6,35 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const notificationRef = useRef(null);
   const notificationRefFail = useRef(null);
-  const [submitted, isSubmitted] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    //fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
-    isSubmitted(!submitted);
-    console.log(notificationRef.current);
-    notificationRef.current.classList.add("fadeIn");
-    setTimeout(() => {
-      console.log("hello");
-      notificationRef.current.classList.remove("fadeIn");
-      notificationRef.current.classList.add("fadeOut");
-    }, 3000);
+    fetch(`http://localhost:3000/user?user=${user}&email=${email}`)
+      .then(function(response) {
+        if (!response.ok) {
+          notificationRefFail.current.classList.add("fadeIn");
+          console.log("erorrrs");
+          setTimeout(() => {
+            notificationRefFail.current.classList.remove("fadeIn");
+            notificationRefFail.current.classList.add("fadeOut");
+          });
+        }
+        return response;
+      })
+      .then(function(response) {
+        console.log("ok");
+        console.log(notificationRef.current);
+        notificationRef.current.classList.add("fadeIn");
+        console.log("still working");
+        setTimeout(() => {
+          notificationRef.current.classList.remove("fadeIn");
+          notificationRef.current.classList.add("fadeOut");
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
     setUser("");
     setEmail("");
   };

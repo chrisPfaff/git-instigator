@@ -31842,6 +31842,7 @@ var Home = function Home() {
       setEmail = _useState4[1];
 
   var notificationRef = (0, _react.useRef)(null);
+  var notificationRefFail = (0, _react.useRef)(null);
 
   var _useState5 = (0, _react.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -31919,7 +31920,7 @@ var Home = function Home() {
     id: "notification",
     className: "notification"
   }, _react.default.createElement("p", null, "Success")), _react.default.createElement("div", {
-    ref: notificationRef,
+    ref: notificationRefFail,
     id: "notificationFail",
     className: "notificationFail"
   }, _react.default.createElement("p", null, "Item not submitted")));
@@ -32726,7 +32727,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58134" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62549" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
