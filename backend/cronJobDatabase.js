@@ -8,17 +8,20 @@ const checkRepoDate = require("./utils/checkRepoDate.js");
 //! best way to pass data to multiple jobs
 let repoList;
 
-// const FindJob = schedule.scheduleJob("20 * * * * *", function() {
-//   let find = User.find({}, function(err, user) {
-//     if (err) return handleError(err);
-//     return user;
-//   });
-//   find.exec().then(data => {
-//     for (const key in data) {
-//       repoList = getReposFromUsers(data[key].name);
-//     }
-//   });
-// });
+const FindJob = schedule.scheduleJob("20 * * * * *", function() {
+  let find = User.find({}, function(err, user) {
+    if (err) return handleError(err);
+    return user;
+  });
+  find.exec().then(data => {
+    for (const key in data) {
+      repoList = getReposFromUsers(data[key].name);
+      repoList.then(data => {
+        console.log(data);
+      });
+    }
+  });
+});
 
 // const EmailJob = schedule.scheduleJob("30 * * * * *", function() {
 //   repoList.then(data => {
