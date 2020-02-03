@@ -17,7 +17,9 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
     for (const key in data) {
       repoList = getReposFromUsers(data[key].name);
       repoList.then(data => {
-        console.log(data);
+        data.forEach(item => {
+          console.log(item.updated_at);
+        });
       });
     }
   });

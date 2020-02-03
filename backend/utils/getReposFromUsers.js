@@ -10,7 +10,7 @@ const getReposFromUsers = async user => {
       console.log(err);
     });
   let repoList = await axios
-    .get(`${data.repos_url}?per_page=2`)
+    .get(`${data.repos_url}?per_page=150`)
     .then(res => {
       return res.data;
     })
