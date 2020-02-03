@@ -22,14 +22,14 @@ const Home = () => {
         return response;
       })
       .then(function(response) {
-        console.log("ok");
-        console.log(notificationRef.current);
-        notificationRef.current.classList.add("fadeIn");
-        console.log("still working");
-        setTimeout(() => {
-          notificationRef.current.classList.remove("fadeIn");
-          notificationRef.current.classList.add("fadeOut");
-        });
+        if (response.ok) {
+          console.log(notificationRef.current);
+          notificationRef.current.classList.add("fadeIn");
+          setTimeout(() => {
+            notificationRef.current.classList.remove("fadeIn");
+            notificationRef.current.classList.add("fadeOut");
+          });
+        }
       })
       .catch(function(error) {
         console.log(error);
