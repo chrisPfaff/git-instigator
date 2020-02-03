@@ -2,7 +2,6 @@ const schedule = require("node-schedule");
 const mailer = require("./mailer.js");
 const User = require("./model/User.js");
 const getReposFromUsers = require("./utils/getReposFromUsers.js");
-const getTimesFromRepos = require("./utils/getTimesFromRepos.js");
 const checkRepoDate = require("./utils/checkRepoDate.js");
 
 //! best way to pass data to multiple jobs
@@ -15,10 +14,11 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
   });
   find.exec().then(data => {
     for (const key in data) {
+      let name = data[key].name;
       repoList = getReposFromUsers(data[key].name);
       repoList.then(data => {
         data.forEach(item => {
-          console.log(item.updated_at);
+          console.log(checkRepoDate(item.updated_at));
         });
       });
     }

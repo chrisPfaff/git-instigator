@@ -1,6 +1,11 @@
-const checkRepoDate = repos => {
-  let time = new Date();
-  console.log(String(time).slice(4, 15) === "Jan 24 2020");
+const checkRepoDate = repoDate => {
+  let todaysDate = new Date();
+  console.log(todaysDate.toISOString().slice(0, 10), repoDate.slice(0, 10));
+  if (todaysDate.toISOString().slice(0, 10) == repoDate.slice(4, 15)) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 module.exports = checkRepoDate;
