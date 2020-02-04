@@ -1,6 +1,10 @@
+const moment = require("moment");
+
 const checkRepoDate = repoDate => {
-  let todaysDate = new Date();
-  if (todaysDate.toISOString().slice(0, 10) == repoDate.slice(0, 10)) {
+  let todaysDate = moment()
+    .format()
+    .slice(0, 10);
+  if (todaysDate == repoDate.slice(0, 10)) {
     return true;
   } else {
     return false;
