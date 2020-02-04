@@ -19,7 +19,15 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
       repoList.then(data => {
         data.forEach(item => {
           if (checkRepoDate(item.updated_at)) {
-            console.log([item.name, item.owner.login, user]);
+            let emailContents = new UserEmail({
+              name: item.owner.login,
+              email: user,
+              repo: item.name
+            });
+            emailContents.save(function(err, emailContents) {
+              if (err) throw err;
+              console.log("user email created");
+            });
           }
         });
       });
