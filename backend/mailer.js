@@ -9,12 +9,12 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-let mailOptions = (email, name) => {
+let mailOptions = ({ name, email, repo }) => {
   return {
     from: process.env.EMAIL,
     to: email,
     subject: `${name} has a message from Git Instigator`,
-    text: `You haven't committed anything all day get to work ${name}`
+    text: `Good job ${name}, you are killing it by working on ${repo} keep going`
   };
 };
 

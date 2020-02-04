@@ -58,17 +58,17 @@ const EmailJob = schedule.scheduleJob("30 * * * * *", function() {
   //send those users an email
   find.exec().then(data => {
     for (const key in data) {
-      console.log(data[key]);
-      mailer.transporter.sendMail(
-        mailer.mailOptions(data[key].email, data[key].name),
-        function(error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Email sent: " + info.response);
-          }
+      let githubUser = data[key];
+      mailer.transporter.sendMail(mailer.mailOptions(githubUser), function(
+        error,
+        info
+      ) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
         }
-      );
+      });
     }
   });
 });
