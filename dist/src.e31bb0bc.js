@@ -40390,7 +40390,7 @@ var Uses = function Uses() {
     className: "Uses_description"
   }, _react.default.createElement(_di.DiReact, null), _react.default.createElement("p", null, "React")), _react.default.createElement("ul", {
     className: "Uses_description"
-  }, _react.default.createElement(_di.DiMongodb, null), _react.default.createElement("p", null, "DiMongodb")), _react.default.createElement("ul", {
+  }, _react.default.createElement(_di.DiMongodb, null), _react.default.createElement("p", null, "Mongodb")), _react.default.createElement("ul", {
     className: "Uses_description"
   }, _react.default.createElement(_di.DiGitCompare, null), _react.default.createElement("p", null, "Parcel")), _react.default.createElement("ul", {
     className: "Uses_description"
@@ -41359,7 +41359,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58924" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

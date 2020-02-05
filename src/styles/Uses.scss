@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Bangers|Open+Sans&display=swap");
 
 .Uses {
   width: 60%;
@@ -39,6 +40,7 @@
     padding: 20px;
   }
   &_description {
+    font-family: "Open Sans", sans-serif;
     padding-top: 20px;
     display: flex;
     font-size: 36px;
