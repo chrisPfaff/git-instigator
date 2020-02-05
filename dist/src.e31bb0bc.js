@@ -31844,11 +31844,6 @@ var Home = function Home() {
   var notificationRef = (0, _react.useRef)(null);
   var notificationRefFail = (0, _react.useRef)(null);
 
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      submitted = _useState6[0],
-      isSubmitted = _useState6[1];
-
   var handleSubmit =
   /*#__PURE__*/
   function () {
@@ -31859,20 +31854,34 @@ var Home = function Home() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              e.preventDefault(); //fetch(`http://localhost:3000/user?user=${user}&email=${email}`);
+              e.preventDefault();
+              fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email)).then(function (response) {
+                if (!response.ok) {
+                  notificationRefFail.current.classList.add("fadeIn");
+                  console.log("erorrrs");
+                  setTimeout(function () {
+                    notificationRefFail.current.classList.remove("fadeIn");
+                    notificationRefFail.current.classList.add("fadeOut");
+                  });
+                }
 
-              isSubmitted(!submitted);
-              console.log(notificationRef.current);
-              notificationRef.current.classList.add("fadeIn");
-              setTimeout(function () {
-                console.log("hello");
-                notificationRef.current.classList.remove("fadeIn");
-                notificationRef.current.classList.add("fadeOut");
-              }, 3000);
+                return response;
+              }).then(function (response) {
+                if (response.ok) {
+                  console.log(notificationRef.current);
+                  notificationRef.current.classList.add("fadeIn");
+                  setTimeout(function () {
+                    notificationRef.current.classList.remove("fadeIn");
+                    notificationRef.current.classList.add("fadeOut");
+                  });
+                }
+              }).catch(function (error) {
+                console.log(error);
+              });
               setUser("");
               setEmail("");
 
-            case 7:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -31915,7 +31924,7 @@ var Home = function Home() {
     value: "Submit"
   })), _react.default.createElement("p", {
     className: "Home_text"
-  }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra neque in mattis sodales. Proin maximus dolor non nunc viverra cursus. Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate. Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec vulputate venenatis diam congue sollicitudin. Cras tortor est, condimentum a semper sit amet, dapibus nec leo."), _react.default.createElement("div", {
+  }, "Welcome to my App. Enter your Github handle and email and get to work. This app will check your Github daily using their API to see if you have committed anything today. If not it will send you and email that will tell you to get work."), _react.default.createElement("div", {
     ref: notificationRef,
     id: "notification",
     className: "notification"
@@ -32727,7 +32736,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62549" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51482" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

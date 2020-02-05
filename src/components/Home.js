@@ -62,21 +62,10 @@ const Home = () => {
         <input type="submit" value="Submit" />
       </form>
       <p className="Home_text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper
-        laoreet ligula. Cras sollicitudin suscipit velit, id sollicitudin mi
-        vehicula a. Pellentesque pellentesque tortor arcu, sit amet luctus magna
-        vehicula id. Nam eget neque eros. Sed eu egestas quam. Nulla pharetra
-        neque in mattis sodales. Proin maximus dolor non nunc viverra cursus.
-        Nulla quis rutrum felis. Suspendisse convallis et orci at vulputate.
-        Donec tristique quam a leo interdum, quis aliquet nisl tristique. Donec
-        a pellentesque sem, ut ultricies mauris. Aliquam hendrerit, mi at
-        tincidunt porttitor, eros nunc finibus ante, vel rhoncus elit quam vitae
-        sapien. Integer a augue quis lectus bibendum cursus ut eu velit. Aenean
-        vel nulla hendrerit augue commodo placerat non a lorem. Ut ut lacus sed
-        mauris tincidunt dignissim accumsan non metus. Maecenas pretium porta
-        nibh, eu volutpat tortor semper quis. In in laoreet magna. Donec
-        vulputate venenatis diam congue sollicitudin. Cras tortor est,
-        condimentum a semper sit amet, dapibus nec leo.
+        Welcome to my App. Enter your Github handle and email and get to work.
+        This app will check your Github daily using their API to see if you have
+        committed anything today. If not it will send you and email that will
+        tell you to get work.
       </p>
       <div ref={notificationRef} id="notification" className="notification">
         <p>Success</p>
