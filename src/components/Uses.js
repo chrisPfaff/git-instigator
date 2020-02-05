@@ -39,7 +39,7 @@ const Uses = () => {
         </ul>
         <ul className="Uses_description">
           <DiMongodb />
-          <p>DiMongodb</p>
+          <p>Mongodb</p>
         </ul>
         <ul className="Uses_description">
           <DiGitCompare />
