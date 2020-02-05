@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "../styles/Home.scss";
 
 const Home = () => {
@@ -48,6 +49,11 @@ const Home = () => {
 
   return (
     <div className="Home">
+      <li className="Home_uses">
+        <Link to="/Uses" style={{ textDecoration: "none" }}>
+          Uses
+        </Link>
+      </li>
       <h1 className="Home_title">Git Instigator</h1>
       <h2 className="Home_description">A web app that keeps you motivated</h2>
       <form className="Home_form" onSubmit={handleSubmit}>
@@ -62,10 +68,9 @@ const Home = () => {
         <input type="submit" value="Submit" />
       </form>
       <p className="Home_text">
-        Welcome to my App. Enter your Github handle and email and get to work.
-        This app will check your Github daily using their API to see if you have
-        committed anything today. If not it will send you and email that will
-        tell you to get work.
+        Enter your Github handle and email and get to work. This app will check
+        your Github daily using their API to see if you have committed anything
+        today. If not it will send you and email that will tell you to get work.
       </p>
       <div ref={notificationRef} id="notification" className="notification">
         <p>Success</p>
