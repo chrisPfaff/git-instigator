@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Bangers&display=swap");
+
+.Uses {
+  &_button {
+    padding: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    list-style-type: none;
+    font-family: "Bangers", cursive;
+    font-size: 30px;
+    text-shadow: 2px 1px 0px #7a7a7a;
+  }
+  &_button > a {
+    color: #c6e48b;
+  }
+  &_button > a:visited {
+    padding: 20px;
+  }
+}
