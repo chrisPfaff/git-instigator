@@ -1,6 +1,27 @@
 @import url("https://fonts.googleapis.com/css?family=Bangers&display=swap");
 
 .Uses {
+  width: 60%;
+  display: flex;
+  padding-top: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &_content {
+    padding-top: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &_title {
+    padding-top: 30px;
+    text-align: center;
+    font-family: "Bangers", cursive;
+    font-size: 80px;
+    text-shadow: 4px 3px 0px #7a7a7a;
+  }
   &_button {
     padding: 30px;
     position: absolute;
@@ -16,5 +37,18 @@
   }
   &_button > a:visited {
     padding: 20px;
+  }
+  &_description {
+    padding-top: 20px;
+    display: flex;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+  }
+  &_description > svg {
+    font-size: 70px;
+  }
+  &_description > p {
+    padding-left: 20px;
   }
 }
