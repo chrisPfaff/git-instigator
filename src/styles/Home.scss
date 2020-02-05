@@ -30,6 +30,7 @@
   &_form > label {
     font-size: 24px;
     font-family: "Open Sans", sans-serif;
+    text-shadow: 2px 1px 0px #7a7a7a;
   }
   &_text {
     text-indent: 50px;
@@ -41,7 +42,8 @@
 }
 
 input[type="submit"] {
-  padding: 7px 12px;
+  padding: 4px 7px;
+  margin-top: 10px;
   font-size: 24px;
   text-align: center;
   outline: none;
@@ -52,7 +54,6 @@ input[type="submit"] {
   color: #23282e;
   font-size: 24px;
   font-family: "Bangers", cursive;
-  margin: 4px 2px;
   cursor: pointer;
 }
 
@@ -105,11 +106,12 @@ input[type="text"],
 input[type="email"] {
   background-color: #c6e48b;
   border: 2px solid #7a7a7a;
-  color: #7a7a7a;
-  padding: 3px;
+  color: #23282e;
+  padding: 7px;
+  font-size: 16px;
   font-family: "Open Sans", sans-serif;
   margin: 4px 2px;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .fadeOut {
