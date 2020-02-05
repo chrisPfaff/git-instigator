@@ -50,16 +50,16 @@ input[type="submit"] {
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
-  background-color: #70ae6e;
-  color: white;
+  background-color: #c6e48b;
+  color: #23282e;
   font-size: 24px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Bangers", cursive;
   margin: 4px 2px;
   cursor: pointer;
 }
 
 input[type="submit"]:hover {
-  background-color: #4c864a;
+  background-color: #7bc96f;
 }
 
 input[type="submit"]:active {
@@ -105,7 +105,7 @@ input[type="submit"]:active {
 
 input[type="text"],
 input[type="email"] {
-  background-color: #70ae6e;
+  background-color: #c6e48b;
   border: 2px solid #7a7a7a;
   color: white;
   padding: 3px;
