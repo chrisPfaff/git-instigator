@@ -1,5 +1,6 @@
 const moment = require("moment");
 
+//! change back to true and false
 const checkRepoDate = repoDate => {
   let todaysDate = moment()
     .utc()
@@ -7,9 +8,9 @@ const checkRepoDate = repoDate => {
     .slice(0, 10);
   console.log(todaysDate, repoDate.slice(0, 10));
   if (todaysDate == repoDate.slice(0, 10)) {
-    return true;
-  } else {
     return false;
+  } else {
+    return true;
   }
 };
 

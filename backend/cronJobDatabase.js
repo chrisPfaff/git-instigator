@@ -9,15 +9,15 @@ const checkRepoDate = require("./utils/checkRepoDate.js");
 
 //! best way to pass data to multiple jobs
 
-const FindJob = schedule.scheduleJob("20 * * * * *", function() {
-  //delete collection to add new users
-  db.dropCollection("useremails", function(err, result) {
-    if (err) {
-      console.log("error delete collection");
-    } else {
-      console.log("delete collection success");
-    }
-  });
+// const FindJob = schedule.scheduleJob("20 * * * * *", function() {
+//   //delete collection to add new users
+//   db.dropCollection("useremails", function(err, result) {
+//     if (err) {
+//       console.log("error delete collection");
+//     } else {
+//       console.log("delete collection success");
+//     }
+//   });
 
 //   //find users
 //   let find = User.find({}, function(err, user) {
