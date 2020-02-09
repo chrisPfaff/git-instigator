@@ -13,11 +13,14 @@ const Home = () => {
     fetch(`http://localhost:3000/user?user=${user}&email=${email}`)
       .then(function(response) {
         if (!response.ok) {
+          //! figure out the set time out antipattern
           notificationRefFail.current.classList.add("fadeIn");
-          console.log("erorrrs");
           setTimeout(() => {
             notificationRefFail.current.classList.remove("fadeIn");
             notificationRefFail.current.classList.add("fadeOut");
+            setTimeout(() => {
+              notificationRefFail.current.classList.remove("fadeOut");
+            }, 3000);
           });
         }
         return response;
@@ -29,6 +32,9 @@ const Home = () => {
           setTimeout(() => {
             notificationRef.current.classList.remove("fadeIn");
             notificationRef.current.classList.add("fadeOut");
+            setTimeout(() => {
+              notificationRef.current.classList.remove("fadeOut");
+            }, 3000);
           });
         }
       })
