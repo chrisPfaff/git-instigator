@@ -27,7 +27,6 @@ const Home = () => {
       })
       .then(function(response) {
         if (response.ok) {
-          console.log(notificationRef.current);
           notificationRef.current.classList.add("fadeIn");
           setTimeout(() => {
             notificationRef.current.classList.remove("fadeIn");

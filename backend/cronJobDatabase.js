@@ -7,8 +7,6 @@ const UserEmail = require("./model/UserEmail.js");
 const getReposFromUsers = require("./utils/getReposFromUsers.js");
 const checkRepoDate = require("./utils/checkRepoDate.js");
 
-//! best way to pass data to multiple jobs
-
 // const FindJob = schedule.scheduleJob("20 * * * * *", function() {
 //   //delete collection to add new users
 //   db.dropCollection("useremails", function(err, result) {

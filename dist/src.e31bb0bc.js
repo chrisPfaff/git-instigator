@@ -40465,22 +40465,27 @@ var Home = function Home() {
               e.preventDefault();
               fetch("http://localhost:3000/user?user=".concat(user, "&email=").concat(email)).then(function (response) {
                 if (!response.ok) {
+                  //! figure out the set time out antipattern
                   notificationRefFail.current.classList.add("fadeIn");
-                  console.log("erorrrs");
                   setTimeout(function () {
                     notificationRefFail.current.classList.remove("fadeIn");
                     notificationRefFail.current.classList.add("fadeOut");
+                    setTimeout(function () {
+                      notificationRefFail.current.classList.remove("fadeOut");
+                    }, 3000);
                   });
                 }
 
                 return response;
               }).then(function (response) {
                 if (response.ok) {
-                  console.log(notificationRef.current);
                   notificationRef.current.classList.add("fadeIn");
                   setTimeout(function () {
                     notificationRef.current.classList.remove("fadeIn");
                     notificationRef.current.classList.add("fadeOut");
+                    setTimeout(function () {
+                      notificationRef.current.classList.remove("fadeOut");
+                    }, 3000);
                   });
                 }
               }).catch(function (error) {
@@ -41359,7 +41364,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59675" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65092" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
