@@ -30,8 +30,8 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
       let repoList = getReposFromUsers(data[key].name);
       repoList.then(data => {
         data.forEach(item => {
-          console.log("foreach item", item.updated_at);
-          //console.log("checkrepo", checkRepoDate(item.updated_at));
+          //console.log("foreach item", item.updated_at);
+          console.log("checkrepo", checkRepoDate(item.updated_at));
           if (checkRepoDate(item.updated_at)) {
             let emailContents = new UserEmail({
               name: item.owner.login,
@@ -51,27 +51,27 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
 
 const EmailJob = schedule.scheduleJob("30 * * * * *", function() {
   //find users who pushed to github today
-  let find = UserEmail.find({}, function(err, UserEmail) {
-    if (err) return handleError(err);
-    return UserEmail;
-  });
-  //send those users an email
-  find.exec().then(data => {
-    for (const key in data) {
-      let githubUser = data[key];
-      console.log(githubUser);
-      mailer.transporter.sendMail(mailer.mailOptions(githubUser), function(
-        error,
-        info
-      ) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
-        }
-      });
-    }
-  });
+  // let find = UserEmail.find({}, function(err, UserEmail) {
+  //   if (err) return handleError(err);
+  //   return UserEmail;
+  // });
+  // //send those users an email
+  // find.exec().then(data => {
+  //   for (const key in data) {
+  //     let githubUser = data[key];
+  //     console.log(githubUser);
+  //     mailer.transporter.sendMail(mailer.mailOptions(githubUser), function(
+  //       error,
+  //       info
+  //     ) {
+  //       if (error) {
+  //         console.log(error);
+  //       } else {
+  //         console.log("Email sent: " + info.response);
+  //       }
+  //     });
+  //   }
+  // });
 });
 
 module.exports = EmailJob;
