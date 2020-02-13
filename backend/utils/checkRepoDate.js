@@ -1,13 +1,11 @@
 const moment = require("moment");
 
 const checkRepoDate = repoDate => {
-  //console.log("repodate", repoDate);
   let todaysDate = moment()
     .utc()
     .format()
     .slice(0, 10);
-  //console.log("repodate", repoDate.slice(0, 10));
-  //console.log("real data", todaysDate);
+  //console.log(repoDate.slice(0, 10) === todaysDate);
   if (todaysDate === repoDate.slice(0, 10)) {
     return true;
   }
