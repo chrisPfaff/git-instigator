@@ -34,7 +34,7 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
           console.log(checkRepoDate(item.updated_at) === false);
           console.log(index === arr.length - 1);
           if (checkRepoDate(item.updated_at)) {
-            console.log("User has committed today");
+            throw new Error("User updated today");
           } else if (
             checkRepoDate(item.updated_at) === false &&
             index === arr.length - 1
