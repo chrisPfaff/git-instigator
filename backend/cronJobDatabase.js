@@ -31,15 +31,15 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
       repoList.then(data => {
         data.forEach((item, index, arr) => {
           //! need to figure out a way to get falsey values to allow and if statement
-          console.log(checkRepoDate(item.updated_at) === false);
-          console.log(index === arr.length - 1);
+          //console.log(checkRepoDate(item.updated_at) === false);
+          //console.log((checkRepoDate(item.updated_at) === false, item));
+          //console.log(index === arr.length - 1);
           if (checkRepoDate(item.updated_at)) {
             throw new Error("User updated today");
           } else if (
-            checkRepoDate(item.updated_at) === false &&
+            checkRepoDate(item.updated_at) === undefined &&
             index === arr.length - 1
           ) {
-            console.log("email created");
             let emailContents = new UserEmail({
               name: item.owner.login,
               email: user

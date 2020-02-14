@@ -5,7 +5,7 @@ const checkRepoDate = repoDate => {
     .utc()
     .format()
     .slice(0, 10);
-  //console.log(repoDate.slice(0, 10) === todaysDate);
+  //console.log(todaysDate, repoDate.slice(0, 10));
   if (todaysDate === repoDate.slice(0, 10)) {
     return true;
   }
