@@ -34,12 +34,11 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
           //console.log(checkRepoDate(item.updated_at) === false);
           //console.log((checkRepoDate(item.updated_at) === false, item));
           //console.log(index === arr.length - 1);
-          if (checkRepoDate(item.updated_at)) {
-            throw new Error("User updated today");
-          } else if (
+          if (
             checkRepoDate(item.updated_at) === undefined &&
             index === arr.length - 1
           ) {
+            console.log(item.owner.login);
             let emailContents = new UserEmail({
               name: item.owner.login,
               email: user
