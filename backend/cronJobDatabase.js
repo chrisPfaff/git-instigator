@@ -29,7 +29,9 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
       let user = data[key].email;
       let repoList = getReposFromUsers(data[key].name);
       repoList.then(data => {
+        console.log(data);
         data.forEach((item, index, arr) => {
+          console.log(item.owner.login);
           //! need to figure out a way to get falsey values to allow and if statement
           //console.log(checkRepoDate(item.updated_at) === false);
           //console.log((checkRepoDate(item.updated_at) === false, item));
@@ -38,7 +40,6 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
             checkRepoDate(item.updated_at) === undefined &&
             index === arr.length - 1
           ) {
-            console.log(item.owner.login);
             let emailContents = new UserEmail({
               name: item.owner.login,
               email: user
@@ -55,28 +56,28 @@ const FindJob = schedule.scheduleJob("20 * * * * *", function() {
 });
 
 const EmailJob = schedule.scheduleJob("30 * * * * *", function() {
-  console.log("inside emailjob");
-  //! find users who didn't push to github today
-  let find = UserEmail.find({}, function(err, UserEmail) {
-    if (err) return handleError(err);
-    return UserEmail;
-  });
-  //! send those users an email
-  find.exec().then(data => {
-    for (const key in data) {
-      let githubUser = data[key];
-      mailer.transporter.sendMail(mailer.mailOptions(githubUser), function(
-        error,
-        info
-      ) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
-        }
-      });
-    }
-  });
+  // console.log("inside emailjob");
+  // //! find users who didn't push to github today
+  // let find = UserEmail.find({}, function(err, UserEmail) {
+  //   if (err) return handleError(err);
+  //   return UserEmail;
+  // });
+  // //! send those users an email
+  // find.exec().then(data => {
+  //   for (const key in data) {
+  //     let githubUser = data[key];
+  //     mailer.transporter.sendMail(mailer.mailOptions(githubUser), function(
+  //       error,
+  //       info
+  //     ) {
+  //       if (error) {
+  //         console.log(error);
+  //       } else {
+  //         console.log("Email sent: " + info.response);
+  //       }
+  //     });
+  //   }
+  // });
 });
 
 module.exports = EmailJob;
